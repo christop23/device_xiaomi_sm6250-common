@@ -63,6 +63,9 @@ on late-fs
     exec_start wait_for_keymaster
     mount_all --late
 
+on property:sys.boot_completed=1
+    stop statsd
+
 on post-fs-data
     mkdir /data/vendor/fpc 0770 system system
     mkdir /data/vendor/goodix 0770 system system
