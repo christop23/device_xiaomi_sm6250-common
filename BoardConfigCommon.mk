@@ -72,7 +72,7 @@ LOC_HIDL_VERSION := 4.0
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     $(COMMON_PATH)/device_framework_matrix.xml \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
-    vendor/lineage/config/device_framework_matrix.xml
+    hardware/interfaces/compatibility_matrices/compatibility_matrix.empty.xml
 DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
 
@@ -113,6 +113,8 @@ BOARD_KERNEL_CMDLINE += video=vfb:640x400,bpp=32,memsize=3072000
 TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_BYPASS := false
 
 # Partitions
+include vendor/voltage/config/BoardConfigReservedSize.mk
+
 BOARD_BOOTIMAGE_PARTITION_SIZE := 134217728
 BOARD_CACHEIMAGE_PARTITION_SIZE := 402653184
 BOARD_DTBOIMG_PARTITION_SIZE := 8388608
@@ -130,14 +132,6 @@ BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
-
-BOARD_PRODUCTIMAGE_EXTFS_INODE_COUNT := -1
-BOARD_PRODUCTIMAGE_PARTITION_RESERVED_SIZE := 1887436800
-BOARD_SYSTEMIMAGE_EXTFS_INODE_COUNT := -1
-BOARD_SYSTEMIMAGE_PARTITION_RESERVED_SIZE := 1887436800
-BOARD_SYSTEM_EXTIMAGE_EXTFS_INODE_COUNT := -1
-BOARD_SYSTEM_EXTIMAGE_PARTITION_RESERVED_SIZE := 104857600
-BOARD_VENDORIMAGE_PARTITION_RESERVED_SIZE := 104857600
 
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 TARGET_COPY_OUT_VENDOR := vendor
@@ -174,7 +168,7 @@ ENABLE_VENDOR_RIL_SERVICE := true
 VENDOR_SECURITY_PATCH := 2023-05-01
 
 # Sepolicy
-include device/lineage/sepolicy/libperfmgr/sepolicy.mk
+include device/voltage/sepolicy/libperfmgr/sepolicy.mk
 include device/qcom/sepolicy_vndr/SEPolicy.mk
 BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 
