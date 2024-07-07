@@ -10,6 +10,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 # Setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
 
+# Parasite
+$(call inherit-product-if-exists, vendor/google/pixel-additional/config.mk)
+
 # AAPT
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
@@ -466,3 +469,6 @@ PRODUCT_BOOT_JARS += \
 
 # Inherit proprietary targets
 $(call inherit-product, vendor/xiaomi/sm6250-common/sm6250-common-vendor.mk)
+
+# Sign the Build
+TARGET_BUILD_FULLY_SIGN := true
